@@ -11,13 +11,18 @@ import os
 
 TEXT = (
     "The tide comes in over flat sand at dusk, unhurried, and the last "
-    "light turns amber along the water. Far out, a ship\u2019s lamp moves "
-    "through the dark, and the whole wide sea keeps room for it \u2014 "
-    "and for you, too."
+    "light turns amber along the water. A ship\u2019s lamp moves through "
+    "the dark, small as a held breath, and the sea, wide as the night, "
+    "keeps room for it \u2014 and for you."
 )
 
 
 def main() -> None:
+    if not 1 <= len(TEXT) <= 280 or not TEXT.strip():
+        raise ValueError(
+            f"entry text must be 1-280 code points and not whitespace-only, "
+            f"got {len(TEXT)} code points"
+        )
     path = os.environ.get("ENTRY_OUTPUT", "/output/entry.txt")
     directory = os.path.dirname(path)
     if directory:
